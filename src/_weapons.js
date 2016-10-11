@@ -9,6 +9,7 @@ function weapon(name, specs) {
     id: _id,
     name, spec1, spec2, spec3,
     description: `これは${name}というブキだ！`,
+    image: 'images/buki-wakaba.png'
   };
 }
 

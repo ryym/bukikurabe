@@ -2,6 +2,11 @@ import React from 'react';
 import WeaponList from './WeaponList';
 import ComparedWeapon from './ComparedWeapon';
 import SpecComparison from './SpecComparison';
+import { bindMethodContext } from './util';
+
+// XXX: choicesがひどい。
+// - ホバー時に表示するステートと、実際に選択されているステートは
+// 分けた方がいい？
 
 export default class Bukikurabe extends React.Component {
   constructor(props) {
@@ -10,14 +15,15 @@ export default class Bukikurabe extends React.Component {
       choices: []
     };
 
-    this.showWeapon = this.showWeapon.bind(this);
-    this.hideWeapon = this.hideWeapon.bind(this);
-    this.selectWeapon = this.selectWeapon.bind(this);
+    bindMethodContext(this);
   }
 
   showWeapon(id) {
     const { choices } = this.state;
     if (choices.length === 2) {
+      return;
+    }
+    if (choices.length > 0 && choices[choices.length - 1].id === id) {
       return;
     }
     const newChoicies = choices.concat({ id, selected: false });
@@ -42,6 +48,27 @@ export default class Bukikurabe extends React.Component {
     }
   }
 
+  unselectWeapon() {
+    const { choices } = this.state;
+    choices.pop();
+    this.setState({ choices });
+  }
+
+  handleWeaponItemClick(id) {
+    const { choices } = this.state;
+    if (choices.length === 0) {
+      return;
+    }
+
+    const lastChoice = choices[choices.length - 1];
+    if (lastChoice.selected && lastChoice.id === id) {
+      this.unselectWeapon();
+    }
+    else {
+      this.selectWeapon();
+    }
+  }
+
   render() {
     const { weapons } = this.props;
     const [target1, target2] = this.state.choices;
@@ -49,20 +76,25 @@ export default class Bukikurabe extends React.Component {
     const weapon2 = target2 ? weapons.filter(w => w.id == target2.id)[0] : undefined;
     const shouldCompare = target1 && target1.selected && target2 && target2.selected;
     return (
-      <main>
-        <div style={{ display: 'inline-block', width: '300px' }}>
+      <main className="main-container">
+        <div className="compared-weapons">
           <ComparedWeapon weapon={weapon1} />
           <ComparedWeapon weapon={weapon2} />
         </div>
-        <div style={{ display: 'inline-block' }}>
+        <div className="weapon-list-container">
           <WeaponList
             weapons={weapons}
             onMouseEnter={this.showWeapon}
             onMouseLeave={this.hideWeapon}
-            onClick={this.selectWeapon}
+            onClick={this.handleWeaponItemClick}
           />
         </div>
-        <SpecComparison weapon1={weapon1} weapon2={weapon2} shouldCompare={shouldCompare} />
+        <SpecComparison
+          weapon1={weapon1}
+          weapon2={weapon2}
+          shouldCompare={shouldCompare}
+          onClose={this.unselectWeapon}
+        />
       </main>
     );
   }

@@ -28,6 +28,7 @@
     "eslint": "^3.7.1",
     "eslint-config-ryym": "^1.1.0",
     "eslint-plugin-react": "^6.3.0",
+    "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.22.0",
     "node-sass": "^3.10.1",
     "postcss-loader": "^0.13.0",

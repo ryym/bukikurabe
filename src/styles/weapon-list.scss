@@ -1,0 +1,22 @@
+.weapon-list-container {
+  float: right;
+}
+
+.weapon-list {
+  list-style: none;
+}
+
+.weapon-item {
+  border: 1px solid #ddd;
+  width: 300px;
+
+  &-image {
+    width: 50px;
+    height: 50px;
+  }
+
+  &-name {
+    display: inline-block;
+    vertical-align: top;
+  }
+}

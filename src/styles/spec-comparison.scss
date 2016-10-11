@@ -1,0 +1,39 @@
+.spec-comparison {
+  clear: both;
+  position: absolute;
+  right: 10px;
+  width: 60%;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  padding: 30px;
+  z-index: 2;
+
+  &.is-hidden {
+    display: none;
+    z-index: -1;
+  }
+
+  &-close {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &-bars {
+    border: 1px solid #eee;
+    padding: 10px;
+  }
+
+  &-bar {
+    height: 8px;
+  }
+
+  &-bar-a {
+    background-color: #faa;
+  }
+
+  &-bar-b {
+    background-color: #aee;
+  }
+}

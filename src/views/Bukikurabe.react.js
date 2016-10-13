@@ -4,77 +4,65 @@ import ComparedWeapon from './ComparedWeapon';
 import SpecComparison from './SpecComparison';
 import { bindMethodContext } from './util';
 
-// XXX: choicesがひどい。
-// - ホバー時に表示するステートと、実際に選択されているステートは
-// 分けた方がいい？
-
 export default class Bukikurabe extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      choices: []
+      glancedWeapon: undefined,
+      selectedWeapons: []
     };
 
     bindMethodContext(this);
   }
 
-  showWeapon(id) {
-    const { choices } = this.state;
-    if (choices.length === 2) {
+  glanceAtWeapon(id) {
+    const { selectedWeapons } = this.state;
+    if (selectedWeapons[0] && selectedWeapons[0].id === id) {
       return;
     }
-    if (choices.length > 0 && choices[choices.length - 1].id === id) {
-      return;
-    }
-    const newChoicies = choices.concat({ id, selected: false });
-    this.setState({
-      choices: newChoicies
-    });
+    const weapon = this.props.weapons.filter(w => w.id === id)[0];
+    this.setState({ glancedWeapon: weapon });
   }
 
-  hideWeapon() {
-    const { choices } = this.state;
-    if (choices.length > 0 && !choices[choices.length - 1].selected) {
-      choices.pop();
-      this.setState({ choices });
-    }
+  glanceAwayWeapon() {
+    this.setState({ glancedWeapon: undefined });
   }
 
   selectWeapon() {
-    const { choices } = this.state;
-    if (choices.length > 0) {
-      choices[choices.length - 1].selected = true;
-      this.setState({ choices });
+    const { glancedWeapon, selectedWeapons } = this.state;
+    if (glancedWeapon) {
+      this.setState({
+        selectedWeapons: selectedWeapons.concat(glancedWeapon),
+        glancedWeapon: undefined
+      });
     }
   }
 
   unselectWeapon() {
-    const { choices } = this.state;
-    choices.pop();
-    this.setState({ choices });
+    const { selectedWeapons } = this.state;
+    selectedWeapons.pop();
+    this.setState({ selectedWeapons });
   }
 
-  handleWeaponItemClick(id) {
-    const { choices } = this.state;
-    if (choices.length === 0) {
-      return;
-    }
+  constructComparedWeapons() {
+    const { glancedWeapon, selectedWeapons } = this.state;
+    return selectedWeapons.concat(glancedWeapon || []);
+  }
 
-    const lastChoice = choices[choices.length - 1];
-    if (lastChoice.selected && lastChoice.id === id) {
-      this.unselectWeapon();
+  handleWeaponItemClick() {
+    if (this.state.glancedWeapon) {
+      this.selectWeapon();
     }
     else {
-      this.selectWeapon();
+      this.unselectWeapon();
     }
   }
 
   render() {
     const { weapons } = this.props;
-    const [target1, target2] = this.state.choices;
-    const weapon1 = target1 ? weapons.filter(w => w.id == target1.id)[0] : undefined;
-    const weapon2 = target2 ? weapons.filter(w => w.id == target2.id)[0] : undefined;
-    const shouldCompare = target1 && target1.selected && target2 && target2.selected;
+    const [weapon1, weapon2] = this.constructComparedWeapons();
+    const shouldCompare = this.state.selectedWeapons.length === 2;
+
     return (
       <main className="main-container">
         <div className="compared-weapons">
@@ -84,8 +72,8 @@ export default class Bukikurabe extends React.Component {
         <div className="weapon-list-container">
           <WeaponList
             weapons={weapons}
-            onMouseEnter={this.showWeapon}
-            onMouseLeave={this.hideWeapon}
+            onMouseEnter={this.glanceAtWeapon}
+            onMouseLeave={this.glanceAwayWeapon}
             onClick={this.handleWeaponItemClick}
           />
         </div>

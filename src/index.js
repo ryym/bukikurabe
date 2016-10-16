@@ -3,10 +3,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Bukikurabe from './views/Bukikurabe';
-import weapons from './_weapons';
+import weapons from './_weapons.json';
 
-import './styles/index.scss';
-import './images/buki-wakaba.png';
+require('./styles/index.scss');
+require.context('./images');
 
 ReactDOM.render(
   <Bukikurabe weapons={weapons} />,

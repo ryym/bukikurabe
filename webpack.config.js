@@ -33,6 +33,11 @@ function defineWebpackConfig(ENV) {
           include: SRC_PATH
         },
         {
+          test: /\.json$/,
+          loaders: ['json'],
+          include: SRC_PATH
+        },
+        {
           test: /\.scss$/,
           loaders: [
             'style',

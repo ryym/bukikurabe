@@ -4,6 +4,8 @@ import ComparedWeapon from './ComparedWeapon';
 import SpecComparison from './SpecComparison';
 import { bindMethodContext } from './util';
 
+const COLOR_VALUES = ['#f68728', '#1618da'];
+
 export default class Bukikurabe extends React.Component {
   constructor(props) {
     super(props);
@@ -66,8 +68,8 @@ export default class Bukikurabe extends React.Component {
     return (
       <main className="main-container">
         <div className="compared-weapons">
-          <ComparedWeapon weapon={weapon1} />
-          <ComparedWeapon weapon={weapon2} />
+          <ComparedWeapon weapon={weapon1} color={COLOR_VALUES[0]} />
+          <ComparedWeapon weapon={weapon2} color={COLOR_VALUES[1]} />
         </div>
         <div className="weapon-list-container">
           <WeaponList
@@ -80,6 +82,7 @@ export default class Bukikurabe extends React.Component {
         <SpecComparison
           weapon1={weapon1}
           weapon2={weapon2}
+          colors={COLOR_VALUES}
           shouldCompare={shouldCompare}
           onClose={this.unselectWeapon}
         />

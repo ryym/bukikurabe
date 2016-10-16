@@ -1,10 +1,42 @@
 .compared-weapons {
-  width: 320px;
   float: left;
 }
 
+.compared-weapon-wrapper {
+  width: 350px;
+  padding: 6px 8px;
+  margin: 8px 0;
+  border-radius: 8px;
+
+  &.is-not-set {
+    background-color: #ddd !important;
+  }
+}
+
 .compared-weapon {
-  border: 1px solid #ddd;
-  width: 100%;
+  background-color: rgba(#fff, 0.9);
   height: 300px;
+
+  &-empty {
+    line-height: 300px;
+    display: block;
+    width: 1em;
+    margin: 0 auto;
+    font-size: 4rem;
+    color: #888;
+  }
+
+  &-image {
+    width: 100px;
+    height: 100px;
+  }
+
+  // TODO: Add basic font-size to body
+  &-name {
+    display: inline-block;
+    vertical-align: top;
+    background-color: #444;
+    color: #fff;
+    padding: 0 0.5em;
+  }
 }

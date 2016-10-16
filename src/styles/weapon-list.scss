@@ -6,17 +6,49 @@
   list-style: none;
 }
 
+.weapon-item-wrapper {
+  background-color: #70b14f;
+  width: 450px;
+  padding: 6px 4px;
+  margin: 4px 0;
+  border-radius: 8px;
+}
+
 .weapon-item {
   border: 1px solid #ddd;
-  width: 300px;
+  border-radius: 4px;
+  background-color: #f3f6eb;
+  position: relative;
 
   &-image {
+    background-color: #fff;
     width: 50px;
     height: 50px;
+    padding: 2px;
+    margin-right: 8px;
   }
 
   &-name {
     display: inline-block;
     vertical-align: top;
+    background-color: #444;
+    color: #fff;
+    padding: 0 0.5em;
+  }
+
+  &-type {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: #eee;
+    transform: rotate(12deg);
+    padding: 0 4px;
+    box-shadow: 1px 1px 1px rgba(#444, 0.5);
+  }
+
+  &-sub,
+  &-special {
+    font-size: 0.9em;
+    padding: 0 2px;
   }
 }

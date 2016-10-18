@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  db:
+    image: postgres:9.6
+    env_file: .docker-env-db
+    volumes:
+      - /etc/postgresql
+      - /var/log/postgresql
+      - /var/lib/postgresql
+    ports:
+      - '5433:5432'

@@ -86,7 +86,7 @@ function getPluginsFor(ENV) {
   if (ENV === 'production') {
     return [
       new webpack.DefinePlugin({
-        'process.env.NODE_ENV': "'production'",
+        'process.env.NODE_ENV': '"production"',
       }),
 
       new webpack.optimize.UglifyJsPlugin({

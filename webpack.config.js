@@ -4,8 +4,8 @@ const HtmlTemplatePlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const pcssAutoprefixer = require('autoprefixer');
 
-const SRC_PATH = path.join(__dirname, 'src');
-const BUILD_PATH = path.join(__dirname, 'build');
+const SRC_PATH = path.join(__dirname, 'frontend');
+const BUILD_PATH = path.join(__dirname, 'public');
 const HTML_TEMPLATE_PATH = path.join(SRC_PATH, 'index.template.html');
 
 module.exports = defineWebpackConfig(process.env.NODE_ENV || 'development');
@@ -72,7 +72,7 @@ function defineWebpackConfig(ENV) {
     },
 
     plugins: [
-      new CleanWebpackPlugin(['build']),
+      new CleanWebpackPlugin([BUILD_PATH]),
 
       new HtmlTemplatePlugin({
         template: HTML_TEMPLATE_PATH,

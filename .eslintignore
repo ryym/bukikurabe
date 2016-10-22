@@ -1,1 +1,3 @@
 db/seed/data
+build/
+public/

@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "Compare weapon specs",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "run-s clean build && run-p watch serve",
+    "clean": "rm -rf build",
+    "build": "babel backend --out-dir build",
+    "watch": "npm run build -- --watch",
+    "serve": "nodemon --watch build build/server.dev.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --fix ."
   },
@@ -13,6 +17,7 @@
   "author": "ryym",
   "license": "MIT",
   "dependencies": {
+    "express": "^4.14.0",
     "pg": "^6.1.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
@@ -34,10 +39,12 @@
     "html-webpack-plugin": "^2.22.0",
     "json-loader": "^0.5.4",
     "node-sass": "^3.10.1",
+    "nodemon": "^1.11.0",
+    "npm-run-all": "^3.1.1",
     "postcss-loader": "^0.13.0",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.16.2"
+    "webpack-dev-middleware": "^1.8.4"
   }
 }

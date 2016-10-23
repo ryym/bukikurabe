@@ -8,6 +8,16 @@ const SRC_PATH = path.join(__dirname, 'frontend');
 const BUILD_PATH = path.join(__dirname, 'public');
 const HTML_TEMPLATE_PATH = path.join(SRC_PATH, 'index.template.html');
 
+const babelConfig = {
+  'presets': [
+    'es2015',
+    'react'
+  ],
+  'plugins': [
+    'syntax-object-rest-spread'
+  ]
+};
+
 module.exports = defineWebpackConfig(process.env.NODE_ENV || 'development');
 
 function defineWebpackConfig(ENV) {
@@ -27,9 +37,8 @@ function defineWebpackConfig(ENV) {
       loaders: [
         {
           test: /\.js$/,
-          loaders: [
-            'babel'
-          ],
+          loader: 'babel',
+          query: babelConfig,
           include: SRC_PATH
         },
         {

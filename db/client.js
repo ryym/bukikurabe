@@ -1,12 +1,13 @@
 const pg = require('pg');
+const env = require('../config/env')
 
 function createClient() {
   return new pg.Client({
-    user: 'ika',
-    password: 'ika',
-    database: 'ika',
-    host: 'localhost',
-    port: 5433
+    user: env.DB_USER,
+    password: env.DB_PASSWORD,
+    database: env.DB_DATABASE,
+    host: env.DB_HOST,
+    port: env.DB_PORT,
   });
 }
 

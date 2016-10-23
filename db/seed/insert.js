@@ -1,13 +1,11 @@
 /* eslint-disable no-console */
 
-const { createClient } = require('../client');
+const db = require('../client');
 const metaData = require('./data/meta-data');
 const weaponTypes = require('./data/weapon-types');
 const mainWeapons = require('./data/main-weapons');
 const subWeapons = require('./data/sub-weapons');
 const specialWeapons = require('./data/special-weapons');
-
-const db = createClient();
 
 function waterfall(asyncs) {
   return asyncs.reduce((p, next) => p.then(next), Promise.resolve());
@@ -73,9 +71,7 @@ function insertMainWeapons() {
 /** * Execute insertions ***/
 
 waterfall([
-  () => new Promise((resolve, reject) => {
-    db.connect(err => err ? reject(err) : resolve(db));
-  }),
+  () => db.connect(),
   makeInserter('meta_data', metaData),
   makeInserter('sub_weapons', subWeapons),
   makeInserter('special_weapons', specialWeapons),

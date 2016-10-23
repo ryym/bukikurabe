@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 const co = require('co');
 const db = require('../client');
 const metaData = require('./data/meta-data');

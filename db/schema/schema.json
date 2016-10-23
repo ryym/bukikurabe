@@ -1,0 +1,53 @@
+{
+  "createdAt": "10/23/2016, 4:43:35 PM",
+  "tables": {
+    "main_weapons": {
+      "name": "main_weapons",
+      "columns": [
+        "id",
+        "name",
+        "description",
+        "weapon_type_id",
+        "spec1_value",
+        "spec2_value",
+        "spec3_value",
+        "sub_weapon_id",
+        "special_weapon_id",
+        "special_diminution",
+        "price"
+      ]
+    },
+    "meta_data": {
+      "name": "meta_data",
+      "columns": [
+        "splatoon_version"
+      ]
+    },
+    "special_weapons": {
+      "name": "special_weapons",
+      "columns": [
+        "id",
+        "name",
+        "description"
+      ]
+    },
+    "sub_weapons": {
+      "name": "sub_weapons",
+      "columns": [
+        "id",
+        "name",
+        "description"
+      ]
+    },
+    "weapon_types": {
+      "name": "weapon_types",
+      "columns": [
+        "id",
+        "name",
+        "spec1_name",
+        "spec2_name",
+        "spec3_name"
+      ]
+    }
+  }
+}

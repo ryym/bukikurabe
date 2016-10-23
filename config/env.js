@@ -2,8 +2,8 @@
  * Export environment variables.
  */
 
-import dotenv from 'dotenv';
-import process from 'process';
+const dotenv = require('dotenv');
+const process = require('process');
 
 // Load environment variables from the env file.
 dotenv.config();
@@ -23,4 +23,4 @@ Object.keys(env).forEach(name => {
   }
 });
 
-export default env;
+module.exports = env;

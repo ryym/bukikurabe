@@ -1,4 +1,4 @@
-import env from '../env';
+import env from '../../config/env';
 
 export default {
   user: env.DB_USER,

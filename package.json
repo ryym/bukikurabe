@@ -25,7 +25,8 @@
     "express": "^4.14.0",
     "pg": "^6.1.0",
     "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "react-dom": "^15.3.2",
+    "sql": "^0.72.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.0",

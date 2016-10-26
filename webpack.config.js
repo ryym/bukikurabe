@@ -14,7 +14,7 @@ const babelConfig = {
     'react'
   ],
   'plugins': [
-    'syntax-object-rest-spread'
+    'transform-object-rest-spread'
   ]
 };
 

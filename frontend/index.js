@@ -1,10 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import reducers from './reducers';
-import contextInjector from './middlewares/context-injector';
-import StateReader from './state/reader';
+import store from './store';
 import Bukikurabe from './views/Bukikurabe';
 import weapons from './_weapons.json';
 import { actions } from './actions';
@@ -15,15 +12,6 @@ const {
 
 require('./styles/index.scss');
 require.context('./images');
-
-const store = createStore(
-  reducers,
-  applyMiddleware(
-    contextInjector(state => ({
-      reader: new StateReader(state)
-    }))
-  )
-);
 
 // TODO: Fetch data from backend.
 setTimeout(() => {

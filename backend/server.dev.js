@@ -12,7 +12,6 @@ const webpackCompiler = webpack(webpackConfig);
 app.use(
   webpackDevMiddleware(webpackCompiler, {
     publicPath: '/',
-    noInfo: true,
   })
 );
 

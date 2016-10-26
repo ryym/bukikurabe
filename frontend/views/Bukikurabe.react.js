@@ -2,58 +2,49 @@ import React from 'react';
 import WeaponList from './WeaponList';
 import ComparedWeapon from './ComparedWeapon';
 import SpecComparison from './SpecComparison';
+import connectWithReader from '../connect-with-reader';
+import { actions } from '../actions';
 import { bindMethodContext } from './util';
+
+const {
+  GLANCE_AT_WEAPON,
+  GLANCE_AWAY_WEAPON,
+  SELECT_WEAPON,
+  UNSELECT_WEAPON
+} = actions;
 
 const COLOR_VALUES = ['#f68728', '#1618da'];
 
-export default class Bukikurabe extends React.Component {
+class Bukikurabe extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      glancedWeapon: undefined,
-      selectedWeapons: []
-    };
-
     bindMethodContext(this);
   }
 
   glanceAtWeapon(id) {
-    const { selectedWeapons } = this.state;
-    if (selectedWeapons[0] && selectedWeapons[0].id === id) {
-      return;
-    }
-    const weapon = this.props.weapons.filter(w => w.id === id)[0];
-    this.setState({ glancedWeapon: weapon });
+    this.props.dispatch(GLANCE_AT_WEAPON(id));
   }
 
   glanceAwayWeapon() {
-    this.setState({ glancedWeapon: undefined });
+    this.props.dispatch(GLANCE_AWAY_WEAPON());
   }
 
-  selectWeapon() {
-    const { glancedWeapon, selectedWeapons } = this.state;
-    if (glancedWeapon) {
-      this.setState({
-        selectedWeapons: selectedWeapons.concat(glancedWeapon),
-        glancedWeapon: undefined
-      });
-    }
+  selectWeapon(id) {
+    this.props.dispatch(SELECT_WEAPON(id));
   }
 
   unselectWeapon() {
-    const { selectedWeapons } = this.state;
-    selectedWeapons.pop();
-    this.setState({ selectedWeapons });
+    this.props.dispatch(UNSELECT_WEAPON());
   }
 
   constructComparedWeapons() {
-    const { glancedWeapon, selectedWeapons } = this.state;
+    const { glancedWeapon, selectedWeapons } = this.props;
     return selectedWeapons.concat(glancedWeapon || []);
   }
 
-  handleWeaponItemClick() {
-    if (this.state.glancedWeapon) {
-      this.selectWeapon();
+  handleWeaponItemClick(id) {
+    if (this.props.glancedWeapon) {
+      this.selectWeapon(id);
     }
     else {
       this.unselectWeapon();
@@ -61,9 +52,9 @@ export default class Bukikurabe extends React.Component {
   }
 
   render() {
-    const { weapons } = this.props;
+    const { weapons = [] } = this.props;
     const [weapon1, weapon2] = this.constructComparedWeapons();
-    const shouldCompare = this.state.selectedWeapons.length === 2;
+    const shouldCompare = this.props.selectedWeapons.length === 2;
 
     return (
       <main className="main-container">
@@ -90,3 +81,13 @@ export default class Bukikurabe extends React.Component {
     );
   }
 }
+
+Bukikurabe.Container = connectWithReader(reader => {
+  return {
+    weapons: reader.getMainWeapons(),
+    glancedWeapon: reader.getGlancedWeapon(),
+    selectedWeapons: reader.getSelectedWeapons()
+  };
+})(Bukikurabe);
+
+export default Bukikurabe;

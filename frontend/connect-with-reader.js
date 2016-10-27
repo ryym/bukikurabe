@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import StateReader from './state/reader';
+import StateReader from './readers';
 
 /**
  * connectWithReader passes a state reader to `mapStateToProps` function

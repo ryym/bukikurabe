@@ -9,7 +9,8 @@
     "watch": "npm run build -- --watch",
     "serve": "nodemon --watch build build/server.dev.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint --fix ."
+    "lint": "eslint --fix .",
+    "lint-staged": "lint-staged"
   },
   "keywords": [
     "Splatoon"
@@ -48,13 +49,22 @@
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.22.0",
     "json-loader": "^0.5.4",
+    "lint-staged": "^3.2.0",
     "node-sass": "^3.10.1",
     "nodemon": "^1.11.0",
     "npm-run-all": "^3.1.1",
     "postcss-loader": "^0.13.0",
+    "pre-commit": "^1.1.3",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.2",
     "webpack-dev-middleware": "^1.8.4"
+  },
+  "pre-commit": "lint-staged",
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }

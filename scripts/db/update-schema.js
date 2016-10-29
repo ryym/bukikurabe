@@ -1,7 +1,9 @@
 const co = require('co');
 const fs = require('fs');
 const path = require('path');
-const db = require('../client');
+const db = require('./_client');
+
+const SCHEMA_JSON_PATH = path.resolve(__dirname, '../../db/schema.json');
 
 const selectSchemaInfoSQL = `
   SELECT
@@ -41,8 +43,7 @@ function makeScemaData(groups) {
 function storeSchemaData({ rows }) {
   const groups = groupBy('table_name', rows);
   const schemaData = makeScemaData(groups);
-  const jsonPath = path.join(__dirname, 'schema.json');
-  fs.writeFileSync(jsonPath, JSON.stringify(schemaData, null, 2));
+  fs.writeFileSync(SCHEMA_JSON_PATH, JSON.stringify(schemaData, null, 2));
 }
 
 co(function* () {

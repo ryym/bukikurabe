@@ -1,5 +1,5 @@
 const pg = require('pg');
-const env = require('../config/env');
+const env = require('../../config/env');
 
 const client = new pg.Client({
   user: env.DB_USER,
@@ -18,4 +18,3 @@ module.exports = {
     client.connect(err => err ? reject(err) : resolve(client));
   }),
 };
-

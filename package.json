@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Compare weapon specs",
   "scripts": {
-    "_install": "npm install --no-optional",
+    "_install": "yarn install",
     "prestart": "npm run _install",
     "start": "run-s clean build && run-p watch serve",
     "clean": "rm -rf build",

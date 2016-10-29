@@ -10,3 +10,10 @@ services:
       - /var/lib/postgresql
     ports:
       - '5433:5432'
+  app:
+    build: dockerfiles/app
+    volumes:
+      - .:/app
+    ports:
+      - '8080:8080'
+    command: ["start"]

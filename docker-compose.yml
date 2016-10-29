@@ -3,7 +3,7 @@ version: '2'
 services:
   db:
     image: postgres:9.6
-    env_file: .docker-env-db
+    env_file: dockerfiles/.env
     volumes:
       - /etc/postgresql
       - /var/log/postgresql
@@ -12,6 +12,7 @@ services:
       - '5433:5432'
   app:
     build: dockerfiles/app
+    env_file: dockerfiles/.env
     volumes:
       - .:/app
     ports:

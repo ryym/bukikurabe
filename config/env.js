@@ -2,11 +2,7 @@
  * Export environment variables.
  */
 
-const dotenv = require('dotenv');
 const process = require('process');
-
-// Load environment variables from the env file.
-dotenv.config();
 
 const envVars = process.env;
 const env = {

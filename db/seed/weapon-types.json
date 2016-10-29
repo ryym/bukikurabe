@@ -1,4 +1,4 @@
-module.exports = [
+[
   {
     "name": "シューター",
     "spec1_name": "射程",
@@ -28,5 +28,5 @@ module.exports = [
     "spec1_name": "射程",
     "spec2_name": "攻撃力",
     "spec3_name": "軽さ"
-  },
+  }
 ]

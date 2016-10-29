@@ -1,10 +1,10 @@
 const co = require('co');
 const db = require('./_client');
-const metaData = require('../../db/seed/data/meta-data');
-const weaponTypes = require('../../db/seed/data/weapon-types');
-const mainWeapons = require('../../db/seed/data/main-weapons');
-const subWeapons = require('../../db/seed/data/sub-weapons');
-const specialWeapons = require('../../db/seed/data/special-weapons');
+const metaData = require('../../db/seed/meta-data.json');
+const weaponTypes = require('../../db/seed/weapon-types.json');
+const mainWeapons = require('../../db/seed/main-weapons.json');
+const subWeapons = require('../../db/seed/sub-weapons.json');
+const specialWeapons = require('../../db/seed/special-weapons.json');
 
 function recordToValues(record, columns) {
   return columns.map(c => {

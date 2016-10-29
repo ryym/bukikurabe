@@ -6,3 +6,5 @@ public
 .env
 
 note.md
+
+.yarn-cache

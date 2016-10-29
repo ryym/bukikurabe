@@ -4,7 +4,7 @@
   "description": "Compare weapon specs",
   "scripts": {
     "node": "node",
-    "_install": "yarn install",
+    "_install": "yarn install --cache-folder .yarn-cache",
     "prestart": "npm run _install",
     "start": "run-s clean build && run-p watch serve",
     "clean": "rm -rf build",

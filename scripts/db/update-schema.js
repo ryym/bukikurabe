@@ -1,7 +1,9 @@
 const co = require('co');
 const fs = require('fs');
 const path = require('path');
-const db = require('./_client');
+const { createDBClient } = require('./_helper');
+
+const db = createDBClient();
 
 const SCHEMA_JSON_PATH = path.resolve(__dirname, '../../db/schema.json');
 

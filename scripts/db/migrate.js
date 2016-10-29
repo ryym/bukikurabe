@@ -4,9 +4,14 @@
  */
 
 const co = require('co');
-const db = require('./_client');
 const fs = require('fs');
 const path = require('path');
+const {
+  createDBClient,
+  selectCurrentSchemaVersion
+} = require('./_helper');
+
+const db = createDBClient();
 
 const MIGRATION_DIR = path.resolve(
   __dirname, '../../db/migrations'
@@ -21,7 +26,7 @@ function* migrate() {
       console.log('Created schema_migrations table.');
     }
 
-    const currentVersion = yield selectCurrentSchemaVersion();
+    const currentVersion = yield selectCurrentSchemaVersion(db);
     if (Number.isNaN(currentVersion)) {
       console.error('Invalid schema version: ', currentVersion);
       return;
@@ -75,16 +80,6 @@ function insertMigrationVersion(version) {
   return db.query(`
     INSERT INTO schema_migrations values ('${version}')
   `);
-}
-
-function selectCurrentSchemaVersion() {
-  return co(function* () {
-    const { rows } = yield db.query(`
-      SELECT version FROM schema_migrations
-      ORDER BY version desc LIMIT 1
-    `);
-    return Number(rows.length > 0 ? rows[0].version : null);
-  });
 }
 
 function selectPendingMigrations(currentVersion, migrationDir) {

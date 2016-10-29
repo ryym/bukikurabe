@@ -1,10 +1,12 @@
 const co = require('co');
-const db = require('./_client');
+const { createDBClient } = require('./_helper');
 const metaData = require('../../db/seed/meta-data.json');
 const weaponTypes = require('../../db/seed/weapon-types.json');
 const mainWeapons = require('../../db/seed/main-weapons.json');
 const subWeapons = require('../../db/seed/sub-weapons.json');
 const specialWeapons = require('../../db/seed/special-weapons.json');
+
+const db = createDBClient();
 
 function recordToValues(record, columns) {
   return columns.map(c => {

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Compare weapon specs",
   "scripts": {
+    "node": "node",
     "_install": "yarn install",
     "prestart": "npm run _install",
     "start": "run-s clean build && run-p watch serve",
@@ -12,7 +13,10 @@
     "serve": "nodemon --watch build build/server.dev.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --fix .",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "db:migrate": "node scripts/db/migrate.js",
+    "db:schema:update": "node scripts/db/update-schema.js",
+    "db:seed:insert": "node scripts/db/insert-seed.js"
   },
   "keywords": [
     "Splatoon"

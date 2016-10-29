@@ -7,4 +7,4 @@ RUN npm install -g yarn
 
 WORKDIR /app
 
-ENTRYPOINT ["yarn", "run"]
+ENTRYPOINT ["yarn"]

@@ -1,7 +1,10 @@
 const co = require('co');
 const fs = require('fs');
 const path = require('path');
-const { createDBClient } = require('./_helper');
+const {
+  createDBClient,
+  selectCurrentSchemaVersion
+} = require('./_helper');
 
 const db = createDBClient();
 
@@ -28,31 +31,32 @@ function groupBy(column, allRows) {
   }, {});
 }
 
-function makeScemaData(groups) {
-  const tables = {};
-  Object.keys(groups).forEach(tableName => {
-    tables[tableName] = {
-      name: tableName,
-      columns: groups[tableName].map(r => r.column_name),
-    };
-  });
-  return {
-    createdAt: new Date().toLocaleString(),
-    tables
-  };
+function storeSchemaData(filePath, schemaData) {
+  fs.writeFileSync(filePath, JSON.stringify(schemaData, null, 2));
 }
 
-function storeSchemaData({ rows }) {
-  const groups = groupBy('table_name', rows);
-  const schemaData = makeScemaData(groups);
-  fs.writeFileSync(SCHEMA_JSON_PATH, JSON.stringify(schemaData, null, 2));
+function makeTableData(columns) {
+  const groups = groupBy('table_name', columns);
+  return Object.keys(groups).reduce((tables, tableName) => Object.assign(tables, {
+    [tableName]: {
+      name: tableName,
+      columns: groups[tableName].map(r => r.column_name),
+    }
+  }), {});
 }
 
 co(function* () {
   try {
     yield db.connect();
-    const result = yield db.query(selectSchemaInfoSQL);
-    storeSchemaData(result);
+
+    const currentVersion = yield selectCurrentSchemaVersion(db);
+    const { rows } = yield db.query(selectSchemaInfoSQL);
+    const tables = makeTableData(rows);
+
+    storeSchemaData(SCHEMA_JSON_PATH, {
+      version: currentVersion,
+      tables,
+    });
   }
   catch (err) {
     console.error(err);

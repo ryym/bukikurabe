@@ -1,5 +1,5 @@
 {
-  "createdAt": "10/29/2016, 6:29:24 PM",
+  "version": 201610192238,
   "tables": {
     "main_weapons": {
       "name": "main_weapons",

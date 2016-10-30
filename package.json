@@ -14,6 +14,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --fix .",
     "lint-staged": "lint-staged",
+    "db:setup": "run-s db:migrate db:schema:update db:seed:insert",
     "db:migrate": "node scripts/db/migrate.js",
     "db:schema:update": "node scripts/db/update-schema.js",
     "db:seed:insert": "node scripts/db/insert-seed.js"

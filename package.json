@@ -11,13 +11,16 @@
     "build": "babel backend --out-dir build",
     "watch": "node scripts/babel-watch.js",
     "serve": "nodemon --watch build build/server.dev.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --fix .",
     "lint-staged": "lint-staged",
     "db:setup": "run-s db:migrate db:schema:update db:seed:insert",
     "db:migrate": "node scripts/db/migrate.js",
     "db:schema:update": "node scripts/db/update-schema.js",
-    "db:seed:insert": "node scripts/db/insert-seed.js"
+    "db:seed:insert": "node scripts/db/insert-seed.js",
+    "test": "ava",
+    "test:watch": "ava --watch",
+    "test:back": "ava 'backend/**/*.test.js'",
+    "test:watch:back": "yarn test:back -- --watch"
   },
   "keywords": [
     "Splatoon"
@@ -39,6 +42,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.5.0",
+    "ava": "^0.16.0",
     "babel-cli": "^6.18.0",
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
@@ -46,6 +50,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.16.0",
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-react": "^6.16.0",
+    "babel-register": "^6.18.0",
     "classnames": "^2.2.5",
     "clean-webpack-plugin": "^0.1.11",
     "css-loader": "^0.25.0",
@@ -72,6 +77,14 @@
     "*.js": [
       "eslint --fix",
       "git add"
+    ]
+  },
+  "ava": {
+    "source": [
+      "backend"
+    ],
+    "require": [
+      "babel-register"
     ]
   }
 }

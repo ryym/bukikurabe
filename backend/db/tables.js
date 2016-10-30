@@ -1,4 +1,4 @@
-const { tables } = require('../../db/schema/schema.json');
+const { tables } = require('../../db/schema.json');
 const sql = require('sql');
 
 function snakeToCamel(word) {

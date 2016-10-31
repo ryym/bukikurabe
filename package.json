@@ -17,9 +17,10 @@
     "db:migrate": "node scripts/db/migrate.js",
     "db:schema:update": "node scripts/db/update-schema.js",
     "db:seed:insert": "node scripts/db/insert-seed.js",
-    "test": "ava",
-    "test:watch": "ava --watch",
-    "test:back": "ava 'backend/**/*.test.js'",
+    "pretest": "NODE_ENV=test yarn db:migrate",
+    "test": "NODE_ENV=test ava",
+    "test:watch": "yarn test -- --watch",
+    "test:back": "yarn test -- 'backend/**/*.test.js'",
     "test:watch:back": "yarn test:back -- --watch"
   },
   "keywords": [

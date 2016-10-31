@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+  test_db:
+    image: postgres:9.6
+    env_file: config/envs/test-docker.env
+    ports:
+      - '5434:5432'
+  app:
+    build: dockerfiles/app
+    env_file: config/envs/test-docker.env
+    environment:
+      - DOCKER=1
+    volumes:
+      - .:/app
+    links:
+      - test_db
+    command: ["test:watch:back"]

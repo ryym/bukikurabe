@@ -16,13 +16,8 @@ module.exports = {
 
   "rules": {
 
-    // Allow Redux action creators to be named like 'FETCH_USERS'.
-    "new-cap": [2, {
-      "capIsNewExceptionPattern": "([A-Z]+_)+[A-Z]+"
-    }],
-
-    // Indent case clauses to use block statements for each case
-    // (to declare block level variables inside them).
+    // In Redux reducers, it is convenient to use block statements for
+    // each case clause. So indent them to make them more readable.
     "indent": [2, 2, {
       "SwitchCase": 1
     }]

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# A shortcut file to run yarn commands
+# in the Docker container.
+#
+# e.g.
+#   bin/app node add babel-core
+#   bin/app db:migrate
+docker-compose run app $*

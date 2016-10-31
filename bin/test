@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# A shortcut file to run test related tasks
+# in the Docker container.
+#
+# e.g.
+#   bin/test up test_db
+#   bin/test run test
+docker-compose -f docker-compose.test.yml $*

@@ -17,6 +17,7 @@
     "db:migrate": "node scripts/db/migrate.js",
     "db:schema:update": "node scripts/db/update-schema.js",
     "db:seed:insert": "node scripts/db/insert-seed.js",
+    "db:clean": "node scripts/db/clean-db.js",
     "pretest": "NODE_ENV=test yarn db:migrate",
     "test": "NODE_ENV=test ava",
     "test:watch": "yarn test -- --watch",

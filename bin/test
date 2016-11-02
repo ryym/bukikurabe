@@ -6,4 +6,4 @@
 # e.g.
 #   bin/test up test_db
 #   bin/test run test
-docker-compose -f docker-compose.test.yml $*
+docker-compose -f docker/compose.test.yml $*

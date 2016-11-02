@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# A shortcut file for development on Docker.
+#
+# e.g.
+#   bin/dev up
+#   bin/dev run app db:migrate
+docker-compose -f docker/compose.yml $*

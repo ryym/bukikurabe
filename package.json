@@ -9,7 +9,7 @@
     "start": "yarn build && run-p watch serve",
     "clean-build": "rm -rf build",
     "prebuild": "yarn clean-build",
-    "build": "babel backend --out-dir build",
+    "build": "babel backend --out-dir build --ignore '_test_'",
     "watch": "node scripts/babel-watch.js",
     "serve": "nodemon --watch build build/server.dev.js",
     "lint": "eslint --fix .",

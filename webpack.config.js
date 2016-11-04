@@ -26,11 +26,14 @@ function defineWebpackConfig(ENV) {
       extensions: ['', '.js', '.react.js'],
     },
 
-    entry: SRC_PATH,
+    entry: {
+      polyfill: 'babel-polyfill',
+      application: SRC_PATH,
+    },
 
     output: {
       path: BUILD_PATH,
-      filename: 'bundle.js',
+      filename: '[name].js',
     },
 
     module: {

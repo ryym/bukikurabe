@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const {
   createDBClient,
-  selectCurrentSchemaVersion
+  selectCurrentSchemaVersion,
 } = require('./_helper');
 
 const db = createDBClient();
@@ -41,7 +41,7 @@ function makeTableData(columns) {
     [tableName]: {
       name: tableName,
       columns: groups[tableName].map(r => r.column_name),
-    }
+    },
   }), {});
 }
 

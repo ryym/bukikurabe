@@ -11,11 +11,11 @@ const HTML_TEMPLATE_PATH = path.join(SRC_PATH, 'index.template.html');
 const babelConfig = {
   'presets': [
     'es2015',
-    'react'
+    'react',
   ],
   'plugins': [
-    'transform-object-rest-spread'
-  ]
+    'transform-object-rest-spread',
+  ],
 };
 
 module.exports = defineWebpackConfig(process.env.NODE_ENV || 'development');
@@ -30,7 +30,7 @@ function defineWebpackConfig(ENV) {
 
     output: {
       path: BUILD_PATH,
-      filename: 'bundle.js'
+      filename: 'bundle.js',
     },
 
     module: {
@@ -39,12 +39,12 @@ function defineWebpackConfig(ENV) {
           test: /\.js$/,
           loader: 'babel',
           query: babelConfig,
-          include: SRC_PATH
+          include: SRC_PATH,
         },
         {
           test: /\.json$/,
           loaders: ['json'],
-          include: SRC_PATH
+          include: SRC_PATH,
         },
         {
           test: /\.scss$/,
@@ -52,9 +52,9 @@ function defineWebpackConfig(ENV) {
             'style',
             'css',
             'postcss',
-            'sass'
+            'sass',
           ],
-          include: SRC_PATH
+          include: SRC_PATH,
         },
 
         // XXX: Temporary
@@ -62,22 +62,22 @@ function defineWebpackConfig(ENV) {
           test: /\.png$/,
           loader: 'file',
           query: {
-            name: 'images/[name].[ext]'
+            name: 'images/[name].[ext]',
           },
-          include: SRC_PATH
-        }
-      ]
+          include: SRC_PATH,
+        },
+      ],
     },
 
     postcss: () => [
       pcssAutoprefixer({
-        browsers: 'last 2 versions'
-      })
+        browsers: 'last 2 versions',
+      }),
     ],
 
     devServer: {
       contentBase: BUILD_PATH,
-      inline: true
+      inline: true,
     },
 
     plugins: [
@@ -85,9 +85,9 @@ function defineWebpackConfig(ENV) {
 
       new HtmlTemplatePlugin({
         template: HTML_TEMPLATE_PATH,
-        inject: 'body'
-      })
-    ].concat(getPluginsFor(ENV))
+        inject: 'body',
+      }),
+    ].concat(getPluginsFor(ENV)),
   };
 }
 
@@ -99,8 +99,8 @@ function getPluginsFor(ENV) {
       }),
 
       new webpack.optimize.UglifyJsPlugin({
-        compress: { warnings: false }
-      })
+        compress: { warnings: false },
+      }),
     ];
   }
 

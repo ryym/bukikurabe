@@ -8,7 +8,7 @@ const fs = require('fs');
 const path = require('path');
 const {
   createDBClient,
-  selectCurrentSchemaVersion
+  selectCurrentSchemaVersion,
 } = require('./_helper');
 
 const db = createDBClient();
@@ -87,7 +87,7 @@ function selectPendingMigrations(currentVersion, migrationDir) {
     .map(fileName => ({
       fileName,
       version: getVersionOf(fileName),
-      filePath: path.join(migrationDir, fileName)
+      filePath: path.join(migrationDir, fileName),
     }))
     .filter(({ version }) => version > currentVersion);
 }

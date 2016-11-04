@@ -29,7 +29,7 @@ export default function ComparedWeapon({ weapon, color }) {
     <div
       className={classNames({
         'compared-weapon-wrapper': true,
-        'is-not-set': ! weapon
+        'is-not-set': ! weapon,
       })}
       style={{ backgroundColor: color }}
     >

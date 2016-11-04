@@ -34,7 +34,7 @@ const samples = {
     subWeaponId: 1,
     specialWeaponId: 1,
     weaponTypeId: 1,
-  }]
+  }],
 };
 
 const db = createClient();

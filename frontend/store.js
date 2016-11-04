@@ -7,7 +7,7 @@ export default createStore(
   reducers,
   applyMiddleware(
     contextInjector(state => ({
-      reader: new StateReader(state)
+      reader: new StateReader(state),
     }))
   )
 );

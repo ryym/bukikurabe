@@ -6,7 +6,7 @@ function snakeToCamel(word) {
 }
 
 const commonConfig = {
-  snakeToCamel: true
+  snakeToCamel: true,
 };
 
 const tableObjects = {};

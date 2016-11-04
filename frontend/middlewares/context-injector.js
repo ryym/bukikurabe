@@ -21,7 +21,7 @@ export default function contextInjector(getContext) {
     const wrappedAction = {
       type: action.type,
       params: extractParams(action),
-      ...context
+      ...context,
     };
     next(wrappedAction);
   };

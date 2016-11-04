@@ -3,12 +3,12 @@ import { repo } from './repo';
 import {
   glancedWeaponID,
   selectedWeaponIDs,
-  mainWeaponIDs
+  mainWeaponIDs,
 } from './weapon-ids';
 
 export default combineReducers({
   glancedWeaponID,
   selectedWeaponIDs,
   mainWeaponIDs,
-  repo
+  repo,
 });

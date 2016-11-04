@@ -25,7 +25,7 @@ export default function SpecComparison({
   weapon2,
   colors,
   shouldCompare,
-  onClose
+  onClose,
 }) {
   if (shouldCompare) {
     return (

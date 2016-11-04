@@ -10,7 +10,7 @@ const {
   GLANCE_AT_WEAPON,
   GLANCE_AWAY_WEAPON,
   SELECT_WEAPON,
-  UNSELECT_WEAPON
+  UNSELECT_WEAPON,
 } = actions;
 
 const COLOR_VALUES = ['#f68728', '#1618da'];
@@ -86,7 +86,7 @@ Bukikurabe.Container = connectWithReader(reader => {
   return {
     weapons: reader.getMainWeapons(),
     glancedWeapon: reader.getGlancedWeapon(),
-    selectedWeapons: reader.getSelectedWeapons()
+    selectedWeapons: reader.getSelectedWeapons(),
   };
 })(Bukikurabe);
 

@@ -9,5 +9,5 @@ export const { types, actions } = createActions({
 
   UNSELECT_WEAPON: () => ({}),
 
-  FINISH_INITIAL_DATA_FETCH: weapons => ({ weapons })
+  FINISH_INITIAL_DATA_FETCH: weapons => ({ weapons }),
 });

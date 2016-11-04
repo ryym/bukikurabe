@@ -7,7 +7,7 @@ import weapons from './_weapons.json';
 import { actions } from './actions';
 
 const {
-  FINISH_INITIAL_DATA_FETCH
+  FINISH_INITIAL_DATA_FETCH,
 } = actions;
 
 require('./styles/index.scss');

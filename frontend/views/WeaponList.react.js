@@ -5,7 +5,7 @@ export default function WeaponList({
   weapons,
   onMouseEnter,
   onMouseLeave,
-  onClick
+  onClick,
 }) {
   const renderWeapon = weapon => (
     <li

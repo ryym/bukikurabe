@@ -32,5 +32,5 @@ function selectCurrentSchemaVersion(db) {
 
 module.exports = {
   createDBClient,
-  selectCurrentSchemaVersion
+  selectCurrentSchemaVersion,
 };

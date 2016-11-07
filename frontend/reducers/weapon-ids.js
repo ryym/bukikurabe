@@ -35,8 +35,8 @@ export const selectedWeaponIDs = (ids = [], { type, params }) => {
 
 export const mainWeaponIDs = (ids = [], { type, params }) => {
   switch (type) {
-    case types.FINISH_INITIAL_DATA_FETCH: {
-      return params.weapons.map(w => w.id);
+    case types.INITIAL_DATA_FETCHED: {
+      return params.mainWeapons.map(w => w.id);
     }
     default: {
       return ids;

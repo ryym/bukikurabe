@@ -14,11 +14,11 @@ export default function ComparedWeapon({ weapon, color }) {
       </div>
       <dl>
         <dt>射程</dt>
-        <dd>{weapon.spec1}</dd>
+        <dd>{weapon.spec1Value}</dd>
         <dt>攻撃力</dt>
-        <dd>{weapon.spec2}</dd>
+        <dd>{weapon.spec2Value}</dd>
         <dt>連射力</dt>
-        <dd>{weapon.spec3}</dd>
+        <dd>{weapon.spec3Value}</dd>
       </dl>
     </div>
   ) : (

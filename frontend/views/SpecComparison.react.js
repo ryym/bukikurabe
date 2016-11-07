@@ -31,9 +31,24 @@ export default function SpecComparison({
     return (
       <div className="spec-comparison">
         <button className="spec-comparison-close" onClick={onClose}>x</button>
-        <SpecItem name="射程" aSpec={weapon1.spec1} bSpec={weapon2.spec1} colors={colors} />
-        <SpecItem name="攻撃力" aSpec={weapon1.spec2} bSpec={weapon2.spec2} colors={colors} />
-        <SpecItem name="連射力" aSpec={weapon1.spec3} bSpec={weapon2.spec3} colors={colors} />
+        <SpecItem
+          name="射程"
+          aSpec={weapon1.spec1Value}
+          bSpec={weapon2.spec1Value}
+          colors={colors}
+        />
+        <SpecItem
+          name="攻撃力"
+          aSpec={weapon1.spec2Value}
+          bSpec={weapon2.spec2Value}
+          colors={colors}
+        />
+        <SpecItem
+          name="連射力"
+          aSpec={weapon1.spec3Value}
+          bSpec={weapon2.spec3Value}
+          colors={colors}
+        />
       </div>
     );
   }

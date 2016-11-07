@@ -1,27 +1,27 @@
 import React from 'react';
 
-export default function WeaponItem({ imageUrl, name }) {
+export default function WeaponItem({ weapon }) {
   return (
     <div className="weapon-item-wrapper">
       <div className="weapon-item">
         <img
           className="weapon-item-image"
-          src={imageUrl}
-          alt={name}
+          src={weapon.image}
+          alt={weapon.name}
         />
         <div className="weapon-item-name">
-          {name}
+          {weapon.name}
         </div>
         <div className="weapon-item-type">
-          シューター
+          {weapon.weaponType.name}
         </div>
         <div>
           <span className="weapon-item-sub">
-            スプラッシュボム
+            {weapon.subWeapon.name}
           </span>
           /
           <span className="weapon-item-special">
-            バリア
+            {weapon.specialWeapon.name}
           </span>
         </div>
       </div>

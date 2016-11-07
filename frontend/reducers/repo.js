@@ -1,13 +1,28 @@
 import { types } from '../actions';
 
-export const repo = (state = {}, { type, params }) => {
+const initialState = {
+  mainWeapons: {},
+  subWeapons: {},
+  specialWeapons: {},
+  weaponTypes: {},
+};
+
+function arrayToObject(array, keyProp = 'id') {
+  return array.reduce((o, row) => {
+    o[row[keyProp]] = row;
+    return o;
+  }, {});
+}
+
+export const repo = (state = initialState, { type, params }) => {
   switch (type) {
-    case types.FINISH_INITIAL_DATA_FETCH: {
-      const weapons = params.weapons.reduce((m, weapon) => {
-        m[weapon.id] = weapon;
-        return m;
-      }, {});
-      return { weapons };
+    case types.INITIAL_DATA_FETCHED: {
+      return {
+        mainWeapons: arrayToObject(params.mainWeapons),
+        subWeapons: arrayToObject(params.subWeapons),
+        specialWeapons: arrayToObject(params.specialWeapons),
+        weaponTypes: arrayToObject(params.weaponTypes),
+      };
     }
     default: {
       return state;

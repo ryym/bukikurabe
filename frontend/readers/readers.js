@@ -15,6 +15,19 @@ export function getSelectedWeapons(state) {
 }
 
 function getWeapons(state, ids) {
-  const { weapons } = state.repo;
-  return weapons ? ids.map(id => weapons[id]) : [];
+  return Object.keys(state.repo.mainWeapons).length > 0
+    ? ids.map(id => getWeapon(state, id))
+    : [];
+}
+
+// XXX: 色んなところでオブジェクトを共有する感じになるから、Immutableにしたい
+export function getWeapon(state, id) {
+  const { mainWeapons, subWeapons, specialWeapons, weaponTypes } = state.repo;
+  const main = mainWeapons[id];
+  if (main) {
+    main.subWeapon = subWeapons[main.subWeaponId];
+    main.specialWeapon = specialWeapons[main.specialWeaponId];
+    main.weaponType = weaponTypes[main.weaponTypeId];
+  }
+  return main;
 }

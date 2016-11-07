@@ -14,10 +14,7 @@ export default function WeaponList({
       onMouseLeave={() => onMouseLeave(weapon.id)}
       onClick={() => onClick(weapon.id)}
     >
-      <WeaponItem
-        imageUrl={weapon.image}
-        name={weapon.name}
-      />
+      <WeaponItem weapon={weapon} />
     </li>
   );
 

@@ -4,6 +4,7 @@ import express from 'express';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackConfig from '../webpack.config';
+import api from './api';
 
 const PORT = 8080;
 const app = express();
@@ -14,6 +15,8 @@ app.use(
     publicPath: '/',
   })
 );
+
+app.use('/api', api);
 
 /* eslint-disable no-console */
 app.listen(PORT, err => {
